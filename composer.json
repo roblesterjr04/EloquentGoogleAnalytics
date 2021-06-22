@@ -1,0 +1,38 @@
+{
+    "name": "rob-lester-jr04/eloquent-google-analytics",
+    "description": "An eloquent model data source for Google Analytics.",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^8.48",
+        "spatie/laravel-analytics": "^3.11"
+    },
+    "require-dev": {
+        "orchestra/testbench": ">=3.5",
+        "phpunit/phpunit": ">=6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robert Lester",
+            "email": "roblesterjr04@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lester\\EloquentGoogleAnalytics\\": "src"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --bootstrap=./vendor/autoload.php",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lester\\EloquentGoogleAnalytics\\ServiceProvider"
+            ]
+        }
+    }
+}
