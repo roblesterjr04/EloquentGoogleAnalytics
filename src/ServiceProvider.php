@@ -25,6 +25,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
 	public function register()
 	{
+		$this->app->bind('eloquent-analytics', function() {
+			return new EloquentAnalytics();
+		});
+		
 		/*$this->mergeConfigFrom(
 			self::CONFIG_PATH,
 			'eloquent_sf'

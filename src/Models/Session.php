@@ -4,7 +4,7 @@ namespace Lester\EloquentGoogleAnalytics\Models;
 
 use Lester\EloquentGoogleAnalytics\Model;
 
-class Pageview extends Model
+class Session extends Model
 {
-	protected $table = 'ga:pageviews';
+	protected $table = 'ga:sessions';
 }

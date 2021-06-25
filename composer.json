@@ -3,7 +3,7 @@
     "description": "An eloquent model data source for Google Analytics.",
     "type": "library",
     "require": {
-        "laravel/framework": "^8.48",
+        "laravel/framework": ">=5.6",
         "spatie/laravel-analytics": "^3.11"
     },
     "require-dev": {

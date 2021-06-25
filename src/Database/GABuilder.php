@@ -1,31 +1,26 @@
 <?php
 
-namespace Lester\EloquentSalesForce\Database;
+namespace Lester\EloquentGoogleAnalytics\Database;
 
 use Illuminate\Database\Eloquent\Builder as Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Pagination\Paginator;
-use Lester\EloquentSalesForce\ServiceProvider;
-use Lester\EloquentSalesForce\Facades\SObjects;
+use Lester\EloquentGoogleAnalytics\ServiceProvider;
+use Lester\EloquentGoogleAnalytics\Facades\EloquentAnalytics;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 
-class SOQLBuilder extends Builder
+class GABuilder extends Builder
 {
 	/**
 	 * {@inheritDoc}
 	 */
 	public function __construct(QueryBuilder $query)
 	{
-		$query->connection = new SOQLConnection(null);
-		$query->grammar = new SOQLGrammar();
+		$query->connection = new GAConnection(null);
+		$query->grammar = new GAGrammar();
 
 		parent::__construct($query);
-	}
-
-	public function batch($tag = null)
-	{
-		return SObjects::getBatch()->batch($this, $tag);
 	}
 
 	public function toSql()
@@ -56,13 +51,7 @@ class SOQLBuilder extends Builder
 	 */
 	public function getModels($columns = ['*'])
 	{
-		if (count($this->model->columns) &&
-			in_array('*', /** @scrutinizer ignore-type */ $columns)) {
-			$cols = $this->model->columns;
-		} else {
-			$cols = $this->getSalesForceColumns($columns);
-		}
-		return parent::getModels($cols);
+		return parent::getModels($columns);
 	}
 
 	/**
@@ -70,10 +59,6 @@ class SOQLBuilder extends Builder
 	 */
 	public function cursor()
 	{
-		if (!$this->query->columns || in_array('*', $this->query->columns)) {
-			$this->query->columns = $this->model->columns;
-		}
-
 		return parent::cursor();
 	}
 
@@ -108,77 +93,4 @@ class SOQLBuilder extends Builder
 		]);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public function insert(\Illuminate\Support\Collection $collection)
-	{
-		$table = $this->model->getTable();
-        $chunkSize = config('eloquent_sf.batch.insert.size', 200) <= 200 ? config('eloquent_sf.batch.insert.size', 200) : 200;
-
-		$counter = 1;
-		$collection = $collection->map(function($object, $index) {
-			$attrs = $object->sf_attributes;
-			$attrs['referenceId'] = 'ref' . $index;
-			$object->sf_attributes = $attrs;
-			return $object;
-		});
-
-
-
-		/** @scrutinizer ignore-call */
-		try {
-			$responseCollection = collect([]);
-			foreach ($collection->chunk($chunkSize) as $collectionBatch) {
-				$payload = [
-					'method' => 'post',
-					'body' => [
-						'records' => $collectionBatch->values()
-					]
-				];
-
-				$response = SObjects::composite('tree/' . $table, $payload);
-				SObjects::log("SOQL Bulk Insert", $payload);
-
-				$response = collect($response['results']);
-				$model = $this->model;
-				$response = $response->map(function($item) use ($model) {
-					unset($item['referenceId']);
-					foreach ($item as $key => $value) {
-						$item[ucwords($key)] = $value;
-						unset($item[$key]);
-					}
-					return new $model($item);
-				});
-				$responseCollection = $responseCollection->merge($response);
-			}
-
-			return $responseCollection;
-		} catch (\Exception $e) {
-			throw $e;
-		}
-	}
-
-	/**
-	 * getSalesForceColumns function.
-	 *
-	 * @access protected
-	 * @param mixed $columns
-	 * @param mixed $table (default: null)
-	 * @return array
-	 */
-	protected function getSalesForceColumns($columns, $table = null)
-	{
-		return ServiceProvider::objectFields($table ?: $this->model->getTable(), $columns);
-	}
-
-	/**
-	 * describe function. returns columns of object.
-	 *
-	 * @return array
-	 */
-	public function describe()
-	{
-		return count($this->model->columns) ? $this->model->columns : $this->getSalesForceColumns(['*'], $this->model->getTable());
-	}
 }

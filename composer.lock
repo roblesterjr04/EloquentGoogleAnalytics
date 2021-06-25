@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68ef7aff7fd086aae72641dd2de16188",
+    "content-hash": "c37ba9cde0b2ff9a42f55375143ef3a2",
     "packages": [
         {
             "name": "brick/math",
@@ -422,21 +422,21 @@
         },
         {
             "name": "google/apiclient",
-            "version": "v2.9.2",
+            "version": "v2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client.git",
-                "reference": "e9ef4c26a044b8d39a46bcf296be795fe24a1849"
+                "reference": "b86b0c974bc998499e080f3d3178aaab06d07ee3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/e9ef4c26a044b8d39a46bcf296be795fe24a1849",
-                "reference": "e9ef4c26a044b8d39a46bcf296be795fe24a1849",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/b86b0c974bc998499e080f3d3178aaab06d07ee3",
+                "reference": "b86b0c974bc998499e080f3d3178aaab06d07ee3",
                 "shasum": ""
             },
             "require": {
                 "firebase/php-jwt": "~2.0||~3.0||~4.0||~5.0",
-                "google/apiclient-services": "~0.13",
+                "google/apiclient-services": "^0.200.0",
                 "google/auth": "^1.10",
                 "guzzlehttp/guzzle": "~5.3.3||~6.0||~7.0",
                 "guzzlehttp/psr7": "^1.2",
@@ -485,13 +485,13 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client/issues",
-                "source": "https://github.com/googleapis/google-api-php-client/tree/v2.9.2"
+                "source": "https://github.com/googleapis/google-api-php-client/tree/v2.10.0"
             },
-            "time": "2021-06-09T22:15:08+00:00"
+            "time": "2021-06-23T18:16:21+00:00"
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.201.0",
+            "version": "v0.200.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
@@ -529,7 +529,7 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.201.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.200.0"
             },
             "time": "2021-06-18T15:00:35+00:00"
         },
@@ -891,16 +891,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.48.0",
+            "version": "v8.48.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "014443366257e4fa34071882e2b04217274a3ec9"
+                "reference": "edc138060a13c9e5f15c005fad5f6a39b4ccf5fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/014443366257e4fa34071882e2b04217274a3ec9",
-                "reference": "014443366257e4fa34071882e2b04217274a3ec9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/edc138060a13c9e5f15c005fad5f6a39b4ccf5fa",
+                "reference": "edc138060a13c9e5f15c005fad5f6a39b4ccf5fa",
                 "shasum": ""
             },
             "require": {
@@ -1055,7 +1055,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-06-22T13:41:32+00:00"
+            "time": "2021-06-23T13:41:59+00:00"
         },
         {
             "name": "league/commonmark",
@@ -6446,16 +6446,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.5",
+            "version": "9.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276"
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/89ff45ea9d70e35522fb6654a2ebc221158de276",
-                "reference": "89ff45ea9d70e35522fb6654a2ebc221158de276",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
+                "reference": "fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb",
                 "shasum": ""
             },
             "require": {
@@ -6485,7 +6485,7 @@
                 "sebastian/global-state": "^5.0.1",
                 "sebastian/object-enumerator": "^4.0.3",
                 "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^2.3.2",
+                "sebastian/type": "^2.3.4",
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
@@ -6533,7 +6533,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.6"
             },
             "funding": [
                 {
@@ -6545,7 +6545,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-05T04:49:07+00:00"
+            "time": "2021-06-23T05:14:38+00:00"
         },
         {
             "name": "sebastian/cli-parser",

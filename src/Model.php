@@ -12,10 +12,23 @@ use Lester\EloquentGoogleAnalytics\Database\GABuilder as Builder;
 
 abstract class Model extends EloquentModel
 {
+	protected $guarded = [];
 	
 	public function save(array $args = [])
 	{
 		throw(new \Exception("Google analytics is Read Only."));
+	}
+	
+	/**
+	 * Create a new Eloquent query builder for the model.
+	 *
+	 * @param  \Illuminate\Database\Query\Builder  $query
+	 * @return \Illuminate\Database\Eloquent\Builder|static
+	 */
+	public function newEloquentBuilder($query)
+	{
+		/** @scrutinizer ignore-call */
+		return new Builder($query);
 	}
 
 }
